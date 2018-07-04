@@ -39,11 +39,11 @@ int main(int argc, string argv[])
         // argv[1] = "50GApilQSG3E2"; // 5-letter password (???)
 
         // DEBUG: Crack list of hashes
-        crack_list();
+        // crack_list();
 
         // Production Code
-        // printf("Usage: %s [hash]\n", argv[0]);
-        // return 1;
+        printf("Usage: %s [hash]\n", argv[0]);
+        return 1;
     }
 
 
@@ -232,7 +232,9 @@ void crack_list()
         if (strcmp(pw, "") != 0)
         {
             clock_t clk_end = clock();
-            printf("%s -> %s (in %2.2fs)\n", hashes[i], pw, (clk_end - clk_start) / 1000000.0);
+            double runtime = (clk_end - clk_start) / 1000000.0;
+            int minutes = (int)(runtime / 60);
+            printf("%s -> %s (in %dm %2.2fs)\n", hashes[i], pw, minutes, runtime - (minutes * 60));
             continue;
         }
         else
